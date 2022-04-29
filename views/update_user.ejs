@@ -1,0 +1,99 @@
+<!-- include header -->
+<%- include('include/_header') %>
+    <!-- /include header -->
+
+    <!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <div class="filter">
+                    <a href="/"><i class="fas fa-angle-double-left"></i> All Vehicles</a>
+                </div>
+            </div>
+            <div class="form-title text-center">
+                <h2 class="text-dark">Check out</h2>
+
+            </div>
+
+            <!-- add user form -->
+            <!-- form handling -->
+            <form method="POST" id="update_user">
+                <div class="new_user">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="Email" class="text-dark">Customer name</label>
+                            <input type="text" name="cname" value="<%= user.customer %>">
+                        </div>
+
+                        <label for="name" class="text-dark">Vehical No</label>
+                        <input type="hidden" name="id" value="<%= user._id %>">
+                        <input type="text" name="name" value="<%= user.number %>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="text-dark">Vehical Model</label>
+                        <input type="text" name="email" value="<%= user.model%>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender" class="text-dark">Vehical Type</label>
+                        <div class="radio inline">
+                            <input type="radio" id="radio-2" name="type" value="2-wheeler" <%=user.type=='2-wheeler'
+                                ? 'checked' : '' %> >
+                            <label for="radio-2" class="radio-label">2-wheeler</label>
+                        </div>
+                        <div class="radio inline">
+                            <input type="radio" id="radio-3" name="type" value="4-wheeler" disabled
+                                <%=user.type=='4-wheeler' ? 'checked' : '' %> >
+                            <label for="radio-3" class="radio-label">4-wheeler</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="text-dark">Phone</label>
+                        <input type="text" name="phone" value="<%= user.phone%>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="text-dark">Check In</label>
+                        <input type="text" id="123" name="check" value="<%= user.check%>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="text-dark">Check Out</label>
+                        <input type="text" name="check1" value="" id="currentDateTime">
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="text-dark">Amount</label>
+                        <input type="text" name="check1" value="80" id="amount" readonly>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn text-dark update"><a href="/"
+                                style="text-decoration: none;color: white">
+                                Proceed to pay
+                            </a></button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </main>
+    <!-- /Main Site -->
+    <script>
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date + ' ' + time;
+        document.getElementById("currentDateTime").value = dateTime;
+
+        var timeEnd = new Date("01/01/2007 " + time).getHours();
+        let str = document.getElementById("123");
+        var b = str.substr(10);
+        var timeStart = new Date("01/01/2007 " + b).getHours();
+        //var timeEnd = new Date("check1").getHours();
+
+        //var hourDiff = timeEnd - timeStart;
+        //if (hourDiff < 0)
+        document.getElementById("amount").value = timeEnd;
+    </script>
+    <!-- include footer -->
+    <%- include('include/_footer') %>
+        <!-- /include footer -->
